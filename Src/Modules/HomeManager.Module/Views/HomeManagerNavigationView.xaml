@@ -1,0 +1,35 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HomeManager.Module.Views"
+             xmlns:dxnav="http://schemas.devexpress.com/winfx/2008/xaml/navigation" x:Class="HomeManager.Module.Views.HomeManagerNavigationView"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:bookvm="clr-namespace:HomeManager.Books.Module.Views;assembly=HomeManager.Books.Module"
+             xmlns:recipes="clr-namespace:HomeManager.Recipes.Module.Views;assembly=HomeManager.Recipes.Module"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300"
+             prism:ViewModelLocator.AutoWireViewModel="True">
+    <x:Code>
+        <![CDATA[
+            public HomeManagerNavigationView()
+            {
+                InitializeComponent();
+            }
+        ]]>
+    </x:Code>
+
+    <Grid>
+        <dxnav:OfficeNavigationBar x:Name="officeNavigationBar" Orientation="Vertical" CustomizationButtonVisibility="Hidden">
+            <dxnav:NavigationBarButton FontSize="24" 
+                                       Content="Books Manager" 
+                                       Command="{Binding NavigateCommand}" 
+                                       CommandParameter="{x:Type bookvm:BooksWorkspaceView}"/>
+            <dxnav:NavigationBarButton FontSize="24" 
+                                       Content="Recipes Manager" 
+                                       Command="{Binding NavigateCommand}" 
+                                       CommandParameter="{x:Type recipes:RecipesWorkspaceView}"/>
+        </dxnav:OfficeNavigationBar>
+    </Grid>
+</UserControl>

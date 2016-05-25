@@ -1,0 +1,14 @@
+[
+  {
+    "Id": 0,
+    "Genre": ".Net"
+  },
+  {
+    "Id": 1,
+    "Genre": "F#"
+  },
+  {
+    "Id": 2,
+    "Genre": "Functional Programming"
+  }
+]
