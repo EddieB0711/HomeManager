@@ -8,7 +8,7 @@ using Prism.Modularity;
 
 namespace HomeManager.Desktop.Infrastructure.ResolveDependencies
 {
-    internal class ModuleInfoLoader
+    internal class ModuleInfoLoader : MarshalByRefObject
     {
         internal ModuleInfo[] GetModules(string path)
         {
