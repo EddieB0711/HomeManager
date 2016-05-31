@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManager.Recipes.Module"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManager.Desktop.Infrastructure", "..\HomeManager.Desktop.Infrastructure\HomeManager.Desktop.Infrastructure.csproj", "{65577C32-BD75-4510-90FE-005F6F1DD5EA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HomeManager.Desktop.Infrastructure.Tests", "..\..\Tests\HomeManager.Desktop.Infrastructure.Tests\HomeManager.Desktop.Infrastructure.Tests.csproj", "{F253E29A-D696-4659-9DAD-22C8FB15CEB0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{65577C32-BD75-4510-90FE-005F6F1DD5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65577C32-BD75-4510-90FE-005F6F1DD5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65577C32-BD75-4510-90FE-005F6F1DD5EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F253E29A-D696-4659-9DAD-22C8FB15CEB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F253E29A-D696-4659-9DAD-22C8FB15CEB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F253E29A-D696-4659-9DAD-22C8FB15CEB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F253E29A-D696-4659-9DAD-22C8FB15CEB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,5 +103,6 @@ Global
 		{1B7F0BAB-DF3B-47FF-95DC-8670878BADAD} = {E7BE7397-E09D-488F-8352-1AB54E69ABB0}
 		{80D86D24-4FE8-404A-96B3-06D55FCA8058} = {E7BE7397-E09D-488F-8352-1AB54E69ABB0}
 		{65577C32-BD75-4510-90FE-005F6F1DD5EA} = {6D871AB1-C9F9-4CEC-82BE-98F6B7E387CA}
+		{F253E29A-D696-4659-9DAD-22C8FB15CEB0} = {3E2CD2E0-B1E4-42B6-A8EF-C9075185375D}
 	EndGlobalSection
 EndGlobal

@@ -24,7 +24,7 @@ namespace HomeManager.Books.Module.Models
         public string LastName { get; private set; }
     }
 
-    internal class AuthorModelMetadata : IMetadataProvider<AuthorModel>
+    public class AuthorModelMetadata : IMetadataProvider<AuthorModel>
     {
         public void BuildMetadata(MetadataBuilder<AuthorModel> builder)
         {

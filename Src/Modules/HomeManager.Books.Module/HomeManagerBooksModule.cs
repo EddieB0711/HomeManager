@@ -1,24 +1,24 @@
-﻿using HomeManager.Books.Module.Views;
-using HomeManager.Infrastructure.Extensions;
-using Microsoft.Practices.Unity;
-using Prism.Modularity;
+﻿using HomeManager.Books.Business;
+using HomeManager.Books.Module.Views;
+using HomeManager.Infrastructure.Services.Repositories.Json;
+using Ninject;
+using Ninject.Modules;
 
 namespace HomeManager.Books.Module
 {
-    public class HomeManagerBooksModule : IModule
+    public class HomeManagerBooksModule : NinjectModule
     {
-        private IUnityContainer _container;
-
-        public HomeManagerBooksModule(IUnityContainer container)
+        public override void Load()
         {
-            container.NullGuard();
+            Bind<IJsonAdapter>().ToConstructor(x => new JsonAdapter(@"..\DataFiles\BookData.json", @"..\DataFiles\BookData.json")).InSingletonScope().Named("bookRepo");
+            Bind<IJsonAdapter>().ToConstructor(x => new JsonAdapter(@"..\DataFiles\AuthorData.json", @"..\DataFiles\AuthorData.json")).InSingletonScope().Named("authorRepo");
+            Bind<IJsonAdapter>().ToConstructor(x => new JsonAdapter(@"..\DataFiles\GenreData.json", @"..\DataFiles\GenreData.json")).InSingletonScope().Named("genreRepo");
 
-            _container = container;
-        }
+            Bind<IJsonRepository<BookRecord>>().To<JsonRepository<BookRecord>>().WithConstructorArgument(Kernel.Get<IJsonAdapter>("bookRepo"));
+            Bind<IJsonRepository<AuthorRecord>>().To<JsonRepository<AuthorRecord>>().WithConstructorArgument(Kernel.Get<IJsonAdapter>("authorRepo"));
+            Bind<IJsonRepository<GenreRecord>>().To<JsonRepository<GenreRecord>>().WithConstructorArgument(Kernel.Get<IJsonAdapter>("genreRepo"));
 
-        public void Initialize()
-        {
-            _container.RegisterTypeAsSingleton<object, BooksWorkspaceView>(typeof(BooksWorkspaceView).FullName);
+            Bind<object>().To<BooksWorkspaceView>().InSingletonScope().Named(typeof(BooksWorkspaceView).FullName);
         }
     }
 }

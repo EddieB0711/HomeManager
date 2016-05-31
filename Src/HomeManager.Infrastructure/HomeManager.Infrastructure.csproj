@@ -52,6 +52,10 @@
       <HintPath>..\HomeManager.Solution\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\HomeManager.Solution\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Nito.AsyncEx, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\HomeManager.Solution\packages\Nito.AsyncEx.3.0.1\lib\net45\Nito.AsyncEx.dll</HintPath>
       <Private>True</Private>
@@ -90,6 +94,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICommandHandler.cs" />
+    <Compile Include="MVVM\Attributes\DefaultContentForRegionAttribute.cs" />
     <Compile Include="MVVM\Attributes\DependentViewModelAttribute.cs" />
     <Compile Include="Contracts\IAsyncCommand.cs" />
     <Compile Include="Contracts\IDbContext.cs" />
@@ -103,6 +108,7 @@
     <Compile Include="Extensions\IUnityContainerExtensions.cs" />
     <Compile Include="Extensions\NullGuardExtensions.cs" />
     <Compile Include="Extensions\ObjectTransformationExtensions.cs" />
+    <Compile Include="MVVM\BindableModule.cs" />
     <Compile Include="MVVM\Commands\AsyncCommand.cs" />
     <Compile Include="MVVM\Commands\AsyncCommandBuilder.cs" />
     <Compile Include="MVVM\Commands\DelegateAsyncCommand.cs" />
@@ -135,6 +141,9 @@
     </Compile>
     <Compile Include="Providers\DispatcherUtil.cs" />
     <Compile Include="RegionNames\Regions.cs" />
+    <Compile Include="ResolveDependencies\NinjectBootstrapper.cs" />
+    <Compile Include="ResolveDependencies\NinjectModuleInitializer.cs" />
+    <Compile Include="ResolveDependencies\NinjectServiceLocatorAdapter.cs" />
     <Compile Include="Services\RegionNavigation\RegionNavigationAdapter.cs" />
     <Compile Include="Services\Repositories\IAsyncRepository.cs" />
     <Compile Include="Services\Repositories\Json\IJsonAdapter.cs" />

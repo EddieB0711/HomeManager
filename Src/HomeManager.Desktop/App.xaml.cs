@@ -15,7 +15,7 @@ namespace HomeManager.Desktop
 
             ThemeManager.ApplicationThemeName = Theme.Office2013Name;
 
-            var bootstrapper = new DefaultBootstrapper();
+            var bootstrapper = new DefaultNinjectBootstrapper();
 
             bootstrapper.Run();
         }

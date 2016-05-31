@@ -20,7 +20,7 @@ namespace HomeManager.Books.Module.Models
         public string Genre { get; private set; }
     }
 
-    internal class GenreModelMetadata : IMetadataProvider<GenreModel>
+    public class GenreModelMetadata : IMetadataProvider<GenreModel>
     {
         public void BuildMetadata(MetadataBuilder<GenreModel> builder)
         {

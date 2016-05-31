@@ -5,20 +5,20 @@ using System.Linq;
 using HomeManager.Infrastructure.Extensions;
 using HomeManager.Infrastructure.MVVM.Attributes;
 using HomeManager.Infrastructure.MVVM.Pattern;
-using Microsoft.Practices.Unity;
+using Ninject;
 using Prism.Regions;
 
 namespace HomeManager.Desktop.Infrastructure.Behaviours
 {
     public class DependentViewModelBehaviour : RegionBehavior
     {
-        private readonly IUnityContainer _container;
+        private readonly IKernel _container;
         private readonly IViewModelTypeBuilder _viewModelBuilder;
 
         private readonly Dictionary<object, List<DependentViewInfo>> _cache =
             new Dictionary<object, List<DependentViewInfo>>();
 
-        public DependentViewModelBehaviour(IUnityContainer container, IViewModelTypeBuilder viewModelBuilder)
+        public DependentViewModelBehaviour(IKernel container, IViewModelTypeBuilder viewModelBuilder)
         {
             container.NullGuard();
             viewModelBuilder.NullGuard();
@@ -68,7 +68,7 @@ namespace HomeManager.Desktop.Infrastructure.Behaviours
             return new DependentViewInfo
             {
                 TargetRegionName = atr.Region,
-                View = atr.Type != null ? _container.Resolve(atr.Type) : null
+                View = atr.Type != null ? _container.Get(atr.Type) : null
             };
         }
 

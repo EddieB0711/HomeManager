@@ -3,13 +3,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using HomeManager.Infrastructure.Events;
 using HomeManager.Infrastructure.Extensions;
+using HomeManager.Infrastructure.MVVM;
 using HomeManager.Infrastructure.MVVM.Commands;
 using HomeManager.Infrastructure.MVVM.Events;
 using Prism.Events;
 
 namespace HomeManager.Books.Module.ViewModels
 {
-    public class BooksNavigationViewModel
+    public class BooksNavigationViewModel : BindableModule
     {
         private IAsyncEventAggregator _eventAggregator;
 

@@ -1,22 +1,11 @@
-﻿using HomeManager.Infrastructure.RegionNames;
-using HomeManager.Module.Views;
-using Prism.Modularity;
-using Prism.Regions;
+﻿using Ninject.Modules;
 
 namespace HomeManager.Module
 {
-    public class HomeManagerModule : IModule
+    public class HomeManagerModule : NinjectModule
     {
-        private readonly IRegionManager _regionManager;
-
-        public HomeManagerModule(IRegionManager regionManager)
+        public override void Load()
         {
-            _regionManager = regionManager;
-        }
-
-        public void Initialize()
-        {
-            _regionManager.RegisterViewWithRegion(Regions.LeftRegion, typeof(HomeManagerNavigationView));
         }
     }
 }
