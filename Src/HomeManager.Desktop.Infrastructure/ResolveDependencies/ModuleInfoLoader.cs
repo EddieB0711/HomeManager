@@ -14,9 +14,7 @@ namespace HomeManager.Desktop.Infrastructure.ResolveDependencies
         {
             var directory = new DirectoryInfo(path);
 
-            ResolveEventHandler resolveEventHandler =
-                delegate (object sender, ResolveEventArgs args) { return OnReflectionOnlyResolve(args, directory); };
-
+            ResolveEventHandler resolveEventHandler = (s, args) => OnReflectionOnlyResolve(args, directory);
             AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += resolveEventHandler;
             ModuleInfo[] moduleCollection;
 
@@ -79,7 +77,7 @@ namespace HomeManager.Desktop.Infrastructure.ResolveDependencies
         {
             var moduleAttribute =
                 CustomAttributeData.GetCustomAttributes(type)
-                    .FirstOrDefault(cad => cad.Constructor.DeclaringType != null && cad.Constructor.DeclaringType.FullName == typeof(ModuleAttribute).FullName);
+                    .FirstOrDefault(cad => cad.Constructor.DeclaringType?.FullName == typeof(ModuleAttribute).FullName);
 
             if (moduleAttribute != null && moduleAttribute.NamedArguments != null)
             {

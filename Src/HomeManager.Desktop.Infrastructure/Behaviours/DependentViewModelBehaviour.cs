@@ -1,30 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Linq;
+﻿using System.Collections.Specialized;
+using HomeManager.Desktop.Infrastructure.Builders.DependentViewCommandBuilder;
+using HomeManager.Infrastructure.Bus;
 using HomeManager.Infrastructure.Extensions;
-using HomeManager.Infrastructure.MVVM.Attributes;
-using HomeManager.Infrastructure.MVVM.Pattern;
-using Ninject;
 using Prism.Regions;
 
 namespace HomeManager.Desktop.Infrastructure.Behaviours
 {
     public class DependentViewModelBehaviour : RegionBehavior
     {
-        private readonly IKernel _container;
-        private readonly IViewModelTypeBuilder _viewModelBuilder;
+        private readonly IDependentViewModelCommandBuilder _builder;
+        private readonly ICommandBus _bus;
 
-        private readonly Dictionary<object, List<DependentViewInfo>> _cache =
-            new Dictionary<object, List<DependentViewInfo>>();
-
-        public DependentViewModelBehaviour(IKernel container, IViewModelTypeBuilder viewModelBuilder)
+        public DependentViewModelBehaviour(ICommandBus bus, IDependentViewModelCommandBuilder builder)
         {
-            container.NullGuard();
-            viewModelBuilder.NullGuard();
-
-            _container = container;
-            _viewModelBuilder = viewModelBuilder;
+            bus.NullGuard();
+            builder.NullGuard();
+            
+            _bus = bus;
+            _builder = builder;
         }
 
         protected override void OnAttach()
@@ -34,54 +27,7 @@ namespace HomeManager.Desktop.Infrastructure.Behaviours
 
         private void ActiveViews_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            if (e.Action == NotifyCollectionChangedAction.Add) e.NewItems.ForEach(AddView);
-            else if (e.Action == NotifyCollectionChangedAction.Remove) e.OldItems.ForEach(RemoveView);
+            _bus.Send(_builder.Create(Region, e));
         }
-
-        private void AddView(object view)
-        {
-            if (!view.GetType().FullName.Contains("View")) return;
-
-            List<DependentViewInfo> list;
-            if (!_cache.TryGetValue(view, out list))
-            {
-                list = new List<DependentViewInfo>();
-                var viewModel = _viewModelBuilder.CreateViewModelType(view.GetType());
-
-                GetCustomAttribute<DependentViewModelAttribute>(viewModel)
-                    .ForEach(atr => list.Add(CreateDependentView(atr)));
-
-                _cache.Add(view, list);
-            }
-
-            list.ForEach(x => Region.RegionManager.Regions[x.TargetRegionName].Add(x.View));
-        }
-
-        private void RemoveView(object view)
-        {
-            if (_cache.ContainsKey(view))
-                _cache[view].ForEach(vi => Region.RegionManager.Regions[vi.TargetRegionName].Remove(vi.View));
-        }
-
-        private DependentViewInfo CreateDependentView(DependentViewModelAttribute atr)
-        {
-            return new DependentViewInfo
-            {
-                TargetRegionName = atr.Region,
-                View = atr.Type != null ? _container.Get(atr.Type) : null
-            };
-        }
-
-        private static IEnumerable<T> GetCustomAttribute<T>(Type type)
-        {
-            return type.GetCustomAttributes(typeof(T), true).OfType<T>();
-        }
-    }
-
-    internal class DependentViewInfo
-    {
-        public object View { get; set; }
-
-        public string TargetRegionName { get; set; }
     }
 }

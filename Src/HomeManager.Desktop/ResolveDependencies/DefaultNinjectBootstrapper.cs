@@ -2,7 +2,6 @@
 using HomeManager.Desktop.Infrastructure.Behaviours;
 using HomeManager.Desktop.Infrastructure.ResolveDependencies;
 using HomeManager.Desktop.Views;
-using HomeManager.Infrastructure.MVVM.Pattern;
 using HomeManager.Infrastructure.ResolveDependencies;
 using Ninject;
 using Prism.Modularity;

@@ -56,6 +56,10 @@
       <HintPath>..\HomeManager.Solution\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\HomeManager.Solution\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Prism, Version=6.1.0.0, Culture=neutral, PublicKeyToken=91a96d2a154366d8, processorArchitecture=MSIL">
       <HintPath>..\HomeManager.Solution\packages\Prism.Core.6.1.0\lib\net45\Prism.dll</HintPath>
       <Private>True</Private>
@@ -83,6 +87,20 @@
   <ItemGroup>
     <Compile Include="Behaviours\DependentViewModelBehaviour.cs" />
     <Compile Include="Behaviours\ViewModelBehaviour.cs" />
+    <Compile Include="Builders\CommandToCommand\AddDependentViewModelToRemoveDependentViewModelCommandBuilder.cs" />
+    <Compile Include="Builders\CommandToCommand\NothingDependentViewModelCommandToAddDependentViewModelCommandBuilder.cs" />
+    <Compile Include="Builders\DependentViewCommandBuilder\NothingDependentViewModelCommandBuilder.cs" />
+    <Compile Include="Builders\DependentViewCommandBuilder\IDependentViewModelCommandBuilder.cs" />
+    <Compile Include="CommandHandlers\AddDependentViewModelCommandHandler.cs" />
+    <Compile Include="CommandHandlers\NothingDependentViewModelCommandHandler.cs" />
+    <Compile Include="CommandHandlers\RemoveDependentViewModelCommandHandler.cs" />
+    <Compile Include="Commands\AddDependentViewModelCommand.cs" />
+    <Compile Include="Commands\NothingDependentViewModelCommand.cs" />
+    <Compile Include="Commands\RemoveDependentViewModelCommand.cs" />
+    <Compile Include="Constants\DependentViewModelActions.cs" />
+    <Compile Include="FaultHandlers\AddDependentViewModelFaultHandler.cs" />
+    <Compile Include="FaultHandlers\NothingDependentViewModelFaultHandler.cs" />
+    <Compile Include="FaultHandlers\RemoveDependentViewModelFaultHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -100,6 +118,9 @@
     <Compile Include="ResolveDependencies\DefaultRegistry.cs" />
     <Compile Include="ResolveDependencies\DynamicDirectoryModuleCatalog.cs" />
     <Compile Include="ResolveDependencies\ModuleInfoLoader.cs" />
+    <Compile Include="Validators\AddDependentViewModelValidator.cs" />
+    <Compile Include="Validators\NothingDependentViewModelValidator.cs" />
+    <Compile Include="Validators\RemoveDependentViewModelValidator.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
